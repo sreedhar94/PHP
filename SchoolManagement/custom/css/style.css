@@ -1,0 +1,77 @@
+.username {
+	margin-bottom: 40px;
+	text-align: left;
+}
+h2 {
+	margin-bottom: 40px;
+	text-align: center;
+}
+label {
+	margin-top: 5px;
+}
+/*.has-error input {
+	border-width: 2px;
+}*/
+.glyphicon {
+	top: 3px;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+}
+
+/* align icon */
+.right-addon .glyphicon { 
+	right: 15px;
+	top: 0px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    /*margin-left:2px;*/
+}
+img.thumb-image, img.dashboadPic {
+	height: 160px;
+	width: 160px;
+	border: 5px solid grey;
+	border-radius: 90px;
+	background-position: center center;
+}
+#profile-picture-preview {
+	height: 160px;
+	width: 160px;
+}
+.profPic {
+	margin: 100px;
+}
+/*.sbmtBtn {
+	text-align: right;
+}*/
+.stdRegSubBtn {
+	margin-top: 21px;
+}
+.table-bordered>thead>tr>th {
+     border-bottom-width: 0 !important; 
+}
