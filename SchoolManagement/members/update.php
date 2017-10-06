@@ -85,14 +85,16 @@ $connect->close();
 					</div>
 					<div class="form-group">
 						<label for="mdob" class="col-md-4">Date of Birth</label>
-						<div class="col-md-8">
-							<div class="input-group date" data-date-format="yyyy-mm-dd" data-provide="datepicker">
-							    <input type="text" class="form-control" placeholder="Date of birth">
-							    <div class="input-group-addon">
-							        <span class="glyphicon glyphicon-calendar"></span>
-							    </div>
-							</div>
-						</div>
+						<!-- <div class="col-md-8 inner-addon right-addon">
+							<input type="text" class="form-control" id="mdob" name="mdob" placeholder="Date of Birth" value="">
+							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+						</div> -->
+						<div class='input-group date' id='datetimepicker1'>
+		                    <input type='text' class="form-control" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
 					</div>
 					<div class="form-group">
 						<label for="mgender" class="col-md-4">Gender</label>
@@ -188,10 +190,17 @@ $connect->close();
 		</div>
 	</div>
 
+	<!-- jQuery plugin -->
 	<script type="text/javascript" src="../assets/jquery/jquery.min.js"></script>
+	<!-- bootstrap js -->
 	<script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- datatables js -->
 	<script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
+	<!-- include custom index.js -->
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
+
+	<!-- <script type="text/javascript" src="https://github.com/uxsolutions/bootstrap-datepicker.git"></script> -->
+
 	<script type="text/javascript" src="../assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript" src="../assets/jquery/jquery.form.min.js"></script>
 

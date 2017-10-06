@@ -1,5 +1,4 @@
 .username {
-	margin-bottom: 40px;
 	text-align: left;
 }
 h2 {
@@ -64,7 +63,21 @@ img.thumb-image, img.dashboadPic {
 	width: 160px;
 }
 .profPic {
-	margin: 100px;
+	margin-top: 20px;
+	margin-bottom: 45px;
+	opacity: 0.4;
+	transition: 1.5s;
+}
+.profPic:hover {
+	opacity: 1;
+	transition: 1.5s;
+}
+.member_details_back_button {
+	margin-top: 20px;
+}
+.person_name {
+	color: blue;
+	font-weight: 600;
 }
 /*.sbmtBtn {
 	text-align: right;
@@ -74,4 +87,13 @@ img.thumb-image, img.dashboadPic {
 }
 .table-bordered>thead>tr>th {
      border-bottom-width: 0 !important; 
+}
+.content {
+	overflow: hidden;
+	text-align: justify;
+	height: 140px;
+}
+.member_details {
+	border: 1px solid #ddd;
+	border-radius: 4px;
 }

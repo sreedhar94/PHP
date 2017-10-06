@@ -12,6 +12,12 @@ if ($_GET) {
 	$sql = "SELECT * FROM members WHERE mid = '$mid'";
 	$query = $connect->query($sql);
 	$memberDetails = $query->fetch_assoc();
+	$musername = $memberDetails['musername'];
+	global $sub_subjects;
+	$sub_sql = "SELECT * FROM subjects WHERE musername = '$musername'";
+	$sub_query = $connect->query($sub_sql);
+	$sub_subjects = $sub_query->fetch_assoc();
+
 } else {
 	header('location: dashboard.php');
 }
@@ -25,9 +31,7 @@ $connect->close();
 <html>
 <head>
 	<title>Member Details</title>
-	<!-- Bootstrap css -->
 	<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
-	<!-- Datatables css -->
 	<!-- <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="../assets/datatables/dataTables.bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../custom/css/style.css">
@@ -68,94 +72,112 @@ $connect->close();
 	if ($_GET) {
 		if ($memberDetails) { ?>
 		<div class="container">
-			<div class="col-md-4 col-md-offset-4">
-				<h2>Member Full Details</h2>
-				<table class="table table-bordered">
-					<tr>
-						<td>First Name</td>
-						<td><?php echo $memberDetails['mfirstname'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Last Name</td>
-						<td class="col-md-6"><?php echo $memberDetails['mlastname'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Date of Birth</td>
-						<td class="col-md-6"><?php echo $memberDetails['mdob'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Gender</td>
-						<td class="col-md-6"><?php echo $memberDetails['mgender'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Email id</td>
-						<td class="col-md-6"><?php echo $memberDetails['memailid'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Username</td>
-						<td class="col-md-6"><?php echo $memberDetails['musername'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Parent Name</td>
-						<td class="col-md-6"><?php echo $memberDetails['mparentname'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Parent Contact</td>
-						<td class="col-md-6"><?php echo $memberDetails['mparentcontact'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Student Contact</td>
-						<td class="col-md-6"><?php echo $memberDetails['mstudentcontact'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Address</td>
-						<td class="col-md-6"><?php echo $memberDetails['maddress'];?></td>
-					</tr>
-					<tr>
-						<td class="col-md-6">Active</td>
-						<td class="col-md-8"><?php echo $memberDetails['mactive'];?></td>
-					</tr>
-				</table>
-				<button type="submit" name="submit" class="btn btn-primary" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span> Go back!</button>
-			</div>
-			<div class="col-md-4">
-				<?php
-				$dir = "../ProfilePicture/".$memberDetails['musername']."/images";
-				if (is_dir($dir)) {
-					$file = 0;
-					$handle = opendir($dir);
-					$open = opendir($dir);
-					while (($file = readdir($open))!= FALSE) {
-						if ( $file!="." && $file!=".." && $file!="Thumbs.db" ) {
-							echo "<img class='profPic dashboadPic' src='$dir/$file'/>";
+			<div class="row">
+				<h2 class="btn-primary btn-lg btn-block">Member Full Details</h2>
+				<div class="col-md-3" align="center">
+					<?php
+					$dir = "../ProfilePicture/".$memberDetails['musername']."/images";
+					if (is_dir($dir)) {
+						$file = 0;
+						$handle = opendir($dir);
+						$open = opendir($dir);
+						while (($file = readdir($open))!= FALSE) {
+							if ( $file!="." && $file!=".." && $file!="Thumbs.db" ) {
+								echo "<img class='profPic dashboadPic' src='$dir/$file'/>";
+							}
 						}
 					}
-				}
-				?>
+					?>
+					<ul class="list-group">
+						<li class="list-group-item active">Subscribed subjects</li>
+						<?php if($sub_subjects['sjava'] == 1) { ?>
+						<li class="list-group-item">
+							<?php echo "JAVA"; } ?>				  		
+						</li>
+						<?php if($sub_subjects['sphp'] == 1) { ?>
+						<li class="list-group-item">
+							<?php echo "PHP"; } ?>				  		
+						</li>
+						<?php if($sub_subjects['sangularjs'] == 1) { ?>
+						<li class="list-group-item">
+							<?php echo "Angular JS"; } ?>				  		
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-offset-1 col-md-6">
+					<h3 class="person_name"><?php echo $memberDetails['mfirstname']." ".$memberDetails['mlastname'];?></h3>
+					<table class="table table-user-information">
+						<!-- <tr>
+							<td class="col-md-3">First Name</td>
+							<td class="col-md-3"><?php echo $memberDetails['mfirstname'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Last Name</td>
+							<td class="col-md-3"><?php echo $memberDetails['mlastname'];?></td>
+						</tr> -->
+						<tr>
+							<td class="col-md-3">Date of Birth</td>
+							<td class="col-md-3"><?php echo $memberDetails['mdob'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Gender</td>
+							<td class="col-md-3"><?php echo $memberDetails['mgender'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Email id</td>
+							<td class="col-md-3"><a href="mailto:<?php echo $memberDetails['memailid'];?>"><?php echo $memberDetails['memailid'];?></a></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Username</td>
+							<td class="col-md-3"><?php echo $memberDetails['musername'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Parent Name</td>
+							<td class="col-md-3"><?php echo $memberDetails['mparentname'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Parent Contact</td>
+							<td class="col-md-3"><?php echo $memberDetails['mparentcontact'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Student Contact</td>
+							<td class="col-md-3"><?php echo $memberDetails['mstudentcontact'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Address</td>
+							<td class="col-md-3"><?php echo $memberDetails['maddress'];?></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">Active</td>
+							<td class="col-md-3"><?php echo $memberDetails['mactive'];?></td>
+						</tr>
+						<tr>
+							<td>
+								<button type="submit" name="submit" class="btn btn-primary member_details_back_button" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span> Go back!</button>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>						
 			</div>
 		</div>
 		<?php }
 	}
 	?>
 
-
-	<!-- jQuery plugin -->
 	<script type="text/javascript" src="../assets/jquery/jquery.min.js"></script>
-	<!-- bootstrap js -->
 	<script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- datatables js -->
 	<script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
-	<!-- include custom index.js -->
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
 
 	<script type="text/javascript">
-		$('.dropdown').hover(function(){ 
+		$('.dropdown').hover(function(){
 			$('.dropdown-toggle', this).trigger('click'); 
 		});
-		$(document).ready(function() {
-			$('#membersData').DataTable();
-		} );
+		// $(document).ready(function() {
+		// 	$('#membersData').DataTable();
+		// } );
 	</script>
 </body>
 </html>

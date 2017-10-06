@@ -39,8 +39,7 @@ $sub_res = check_reg();
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>  <?php echo $muserdata['musername']; ?> <span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Update Details</a></li>
-									<li><a href="#">Change Password</a></li>
+									<li><a href="update.php">Update Details</a></li>
 								</ul>
 							</li>
 							<li><a href="logout.php"> <span class="glyphicon glyphicon-off"></span>  Logout</a></li>
@@ -62,9 +61,15 @@ $sub_res = check_reg();
 				<img src="../assets/images/java.jpg" alt="java">
 				<div class="caption">
 					<h3>JAVA</h3>
-					<p>...</p>
-					<button class="btn btn-primary register" data-target=".sub_reg" onclick="javaReg()" id="java_reg">Register</button>
-					<button class="btn btn-primary register" data-target=".sub_reg" onclick="javaReg()" id="java_unreg">Un-Register</button>
+					<p class="content">
+						<?php 
+						$subject = "java";
+						$result = sub_content();
+						echo $result['sub_description'];
+						 ?>
+					</p>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="javaReg()" id="java_reg">Register</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="javaReg()" id="java_unreg">Un-Register</button>
 				</div>
 			</div>
 		</div>
@@ -73,8 +78,15 @@ $sub_res = check_reg();
 				<img src="../assets/images/php.jpg" alt="php">
 				<div class="caption">
 					<h3>PHP</h3>
-					<p>...</p>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()">Register</button>
+					<p class="content">
+						<?php 
+						$subject = "php";
+						$result = sub_content();
+						echo $result['sub_description'];
+						 ?>
+					</p>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()" id="php_reg">Register</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()" id="php_unreg">Un-Register</button>
 				</div>
 			</div>
 		</div>
@@ -83,14 +95,21 @@ $sub_res = check_reg();
 				<img src="../assets/images/angularjs.jpg" alt="angular js">
 				<div class="caption">
 					<h3>Angular JS</h3>
-					<p>...</p>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()">Register</button>
+					<p class="content">
+						<?php 
+						$subject = "AngularJS";
+						$result = sub_content();
+						echo $result['sub_description'];
+						 ?>
+					</p>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()" id="ang_reg">Register</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()" id="ang_unreg">Un-Register</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="modal fade reg" id="subBtn" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	<div class="modal fade reg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="close_register">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -111,19 +130,9 @@ $sub_res = check_reg();
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
 
-	<script type="text/javascript">
-
-		$('.dropdown').hover(function(){ 
-			$('.dropdown-toggle', this).trigger('click'); 
-		});
-		$(document).ready(function() {
-			$('#membersData').DataTable();
-		} );
-		// check_reg();		
-	</script>
 	<?php 
 
-	subscribe_button_check(); 
+	subscribe_button_check();
 
 	?>
 </body>

@@ -21,12 +21,13 @@ function registerAdminUser() {
 	global $connect;
 	$aname = $_POST['aname'];
 	$aactivationcode = $_POST['aactivationcode'];
+	$aemail = $_POST['aemail'];
 	$ausername = $_POST['ausername'];
 	$apassword = $_POST['apassword'];
 	$asalt = asalt(32);
 	$anewPassword = makeAPassword($apassword, $asalt);
 	if ($anewPassword) {
-		$sql = "INSERT INTO admin (aname, aactivationcode, ausername, apassword, asalt, aactive) VALUES ('$aname', '$aactivationcode', '$ausername', '$anewPassword', '$asalt', '1')";
+		$sql = "INSERT INTO admin (aname, aactivationcode, aemail, ausername, apassword, asalt, aactive) VALUES ('$aname', '$aactivationcode', '$aemail', '$ausername', '$anewPassword', '$asalt', '1')";
 		$query = $connect -> query($sql);
 		if($query === TRUE) {
 			return true;
@@ -58,6 +59,7 @@ function auserdata($ausername) {
 		return false;
 	}
 	$connect->close();
+	//close the database connection
 }
 
 // admin user login
@@ -88,6 +90,7 @@ function getAdminUserDataByUserId($aid) {
 	return $result;
 	
 	$connect->close();
+	//close the database connection
 }
 
 // check admin user login
@@ -116,8 +119,52 @@ function checkAdminUserlogout() {
 		//destroy the session
 		session_destroy();
 		header('location: login.php');
-		
 	}
+}
+
+// check admin user password
+function checkpassword($aid) {
+	global $connect;
+	$aid = $_SESSION['aid'];
+	$ausername = $_POST['ausername'];
+	$acrpassword = $_POST['acrpassword'];
+	$auserdata = auserdata($ausername);
+	$anewPassword = makeAPassword($acrpassword, $auserdata['asalt']);
+	if ($anewPassword) {
+		$sql = "SELECT * FROM admin WHERE ausername = '$ausername' AND apassword = '$anewPassword'";
+		$query = $connect->query($sql);
+		if (($query->num_rows) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	$connect->close();
+}
+
+// update admin details
+function updateadmin($aid) {
+	global $connect;
+	$aname = $_POST['aname'];
+	$aemail = $_POST['aemail'];
+	$ausername = $_POST['ausername'];
+	$acrpassword = $_POST['acrpassword'];
+	$anpassword = $_POST['anpassword'];
+	$auserdata = auserdata($ausername);
+	$aid = $_SESSION['aid'];
+	$attach = "";
+	if (!empty($anpassword)) {
+		$anewPassword = makeAPassword($anpassword, $auserdata['asalt']);
+		$attach = ", apassword = '".$anewPassword."'";
+	}
+	$sql = "UPDATE admin SET aname = '$aname', aemail = '$aemail', ausername = '$ausername'".$attach." WHERE aid = '$aid'";
+	$query = $connect->query($sql);
+	if($query === TRUE) {
+		return true;
+	} else {
+		return false;
+	}
+	$connect->close();
 }
 
 // /Admin
@@ -219,6 +266,7 @@ function muserdata($musername) {
 		return false;
 	}
 	$connect->close();
+	//close the database connection
 }
 
 // member user login
@@ -249,6 +297,7 @@ function getMemberUserDataByUserId($mid) {
 	return $result;
 	
 	$connect->close();
+	//close the database connection
 }
 
 // check member user login
@@ -395,12 +444,6 @@ function angReg() {
     $connect->close();
 }
 // /Subjects
-
-$functionName = filter_input(INPUT_GET, 'functionName');
-if ($functionName == "subscribe_button_check") {
-	subscribe_button_check();
-}
-
 function subscribe_button_check() {
 	global $connect;
     $mid = $_SESSION['mid'];
@@ -412,7 +455,39 @@ function subscribe_button_check() {
     	echo '<script type="text/javascript">$("#java_reg").hide();</script>';
     	echo '<script type="text/javascript">$("#java_unreg").show();</script>';
     }
+    if ($sub_res['sphp'] == 0) {
+    	echo '<script type="text/javascript">$("#php_unreg").hide();</script>';
+    	echo '<script type="text/javascript">$("#php_reg").show();</script>';
+    } else {
+    	echo '<script type="text/javascript">$("#php_reg").hide();</script>';
+    	echo '<script type="text/javascript">$("#php_unreg").show();</script>';
+    }
+    if ($sub_res['sangularjs'] == 0) {
+    	echo '<script type="text/javascript">$("#ang_unreg").hide();</script>';
+    	echo '<script type="text/javascript">$("#ang_reg").show();</script>';
+    } else {
+    	echo '<script type="text/javascript">$("#ang_reg").hide();</script>';
+    	echo '<script type="text/javascript">$("#ang_unreg").show();</script>';
+    }
     $connect->close();
 }
+
+
+// content
+function sub_content() {
+	global $connect;
+	global $subject;
+	$sql = "SELECT * FROM content WHERE sub_name='$subject'";
+	$query = $connect->query($sql);
+	$result = mysqli_fetch_array($query);
+	return $result;
+
+	$connect->close();
+}
+
+
+
+
+
 
 ?>

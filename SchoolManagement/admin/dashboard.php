@@ -20,9 +20,7 @@ $mactive = '';
 <html>
 <head>
 	<title>Admin Dashboard</title>
-	<!-- Bootstrap css -->
 	<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
-	<!-- Datatables css -->
 	<!-- <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="../assets/datatables/dataTables.bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../custom/css/style.css">
@@ -47,7 +45,7 @@ $mactive = '';
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>  <?php echo $auserdata['ausername']; ?> <span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Update Details</a></li>
+									<li><a href="update.php">Update Details</a></li>
 									<li><a href="#">Change Password</a></li>
 								</ul>
 							</li>
@@ -85,27 +83,15 @@ $mactive = '';
 					} else {
 						$mactive = '<label class="label label-danger">Deactive</label>';
 					}
-					// $mactionButton = '<!-- Single button -->
-					// 				<div class="btn-group">
-					// 				  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					// 				    Action <span class="caret"></span>
-					// 				  </button>
-					// 				  <ul class="dropdown-menu">
-					// 				    <li><a type="button" data-toggle="modal" data-target="#fullDetailsModal" onclick="fullDetails('.$row['mid'].')" ><span class="glyphicon glyphicon-edit"></span> Full Details </a></li>
-					// 				    <li><a type="button" data-toggle="modal" data-target="#editMemberModal" onclick="editMember('.$row['mid'].')" ><span class="glyphicon glyphicon-edit"></span> Edit </a></li>
-					// 				    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeMember('.$row['mid'].')" ><span class="glyphicon glyphicon-trash"></span> Delete </a></li>
-					// 				  </ul>
-					// 				</div>';
-					$mactionButton = '<!-- Single button -->
-									<div class="btn-group">
-									  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					$mactionButton = '<div class="btn-group">
+										<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    Action <span class="caret"></span>
-									  </button>
-									  <ul class="dropdown-menu">
-									    <li><a type="button" href="memberDetails.php?mid='.$row['mid'].'"><span class="glyphicon glyphicon-edit"></span> Full Details </a></li>
-									    <li><a type="button" onclick="editMember('.$row['mid'].')" ><span class="glyphicon glyphicon-edit"></span> Edit </a></li>
-									    <li><a type="button" onclick="removeMember('.$row['mid'].')" ><span class="glyphicon glyphicon-trash"></span> Delete </a></li>
-									  </ul>
+										</button>
+										<ul class="dropdown-menu">
+									    	<li><a type="button" href="memberDetails.php?mid='.$row['mid'].'"><span class="glyphicon glyphicon-edit"></span> Full Details </a></li>
+										    <li><a type="button" onclick="editMember('.$row['mid'].')" ><span class="glyphicon glyphicon-edit"></span> Edit </a></li>
+										    <li><a type="button" onclick="removeMember('.$row['mid'].')" ><span class="glyphicon glyphicon-trash"></span> Delete </a></li>
+										</ul>
 									</div>';
 		        	echo '<tr>
 			                <td>'.$x.'</td>
@@ -135,13 +121,5 @@ $mactive = '';
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
 
-	<script type="text/javascript">
-		$('.dropdown').hover(function(){ 
-		  $('.dropdown-toggle', this).trigger('click'); 
-		});
-		$(document).ready(function() {
-		    $('#membersData').DataTable();
-		} );
-	</script>
 </body>
 </html>

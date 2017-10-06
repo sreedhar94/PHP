@@ -4,12 +4,13 @@ global $connect;
 
 if ($_POST) {
 	$aname = $_POST['aname'];
+	$aemail = $_POST['aemail'];
 	$ausername = $_POST['ausername'];
 	$aactivationcode = $_POST['aactivationcode'];
 	$apassword = $_POST['apassword'];
 	$acpassword = $_POST['acpassword'];
 
-	if ($aname && $ausername && $aactivationcode && $apassword && $acpassword) {
+	if ($aname && $aemail && $ausername && $aactivationcode && $apassword && $acpassword) {
 		if ($apassword == $acpassword) {
 			if (adminUserExist($ausername) === TRUE) {
 				$messages[] = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong> <span class="glyphicon glyphicon-exclamation-sign"> </span> "'. $_POST['ausername'].'"</strong> is already exists in the database. Please enter different username.</div> ';
@@ -61,6 +62,12 @@ $connect->close();
 					<label for="aactivation" class="col-md-4">Activation Code</label>
 					<div class="col-md-8">
 						<input type="password" class="form-control" id="aactivationcode" name="aactivationcode" placeholder="Activation Code">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="aemail" class="col-md-4">Email</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="aemail" name="aemail" placeholder="Email">
 					</div>
 				</div>
 				<div class="form-group">

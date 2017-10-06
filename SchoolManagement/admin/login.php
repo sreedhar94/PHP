@@ -22,7 +22,7 @@ if ($_POST) {
 				$messages[] = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><span class="glyphicon glyphicon-exclamation-sign"> </span> The combination is not matching, please login using valid username and password.</div> ';
 			}
 		} else {
-			$messages[] = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong> <span class="glyphicon glyphicon-exclamation-sign"> </span> "'. $_POST['ausername'].'"</strong> is not exists in the database. Please enter different valid username.</div> ';
+			$messages[] = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong> <span class="glyphicon glyphicon-exclamation-sign"> </span> '. $_POST['ausername'].'</strong> is not exists in the database. Please enter different valid username.</div> ';
 		}
 	}
 }
