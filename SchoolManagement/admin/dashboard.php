@@ -122,6 +122,5 @@ $mactive = '';
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 
-	
 </body>
 </html>
