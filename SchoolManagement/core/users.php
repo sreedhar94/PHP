@@ -1,7 +1,13 @@
 <?php
 
 // Admin
-
+// password encryption for admin user
+function asalt($length) {
+	return mcrypt_create_iv($length);
+}
+function makeAPassword($apassword, $asalt) {
+	return hash('sha256', $apassword.$asalt);
+}
 // check admin user in the database
 function adminUserExist($ausername) {
 	global $connect;
@@ -13,7 +19,6 @@ function adminUserExist($ausername) {
 	} else {
 		return false;
 	}
-
 	$connect->close();
 }
 // admin user registration
@@ -35,18 +40,8 @@ function registerAdminUser() {
 			return false;
 		}
 	}
-	
 	$connect->close();
 }
-// password encryption for admin user
-function asalt($length) {
-	return mcrypt_create_iv($length);
-}
-
-function makeAPassword($apassword, $asalt) {
-	return hash('sha256', $apassword.$asalt);
-}
-
 // admin userdata
 function auserdata($ausername) {
 	global $connect;
@@ -59,9 +54,7 @@ function auserdata($ausername) {
 		return false;
 	}
 	$connect->close();
-	//close the database connection
 }
-
 // admin user login
 function adminUserLogin($ausername, $apassword) {
 	global $connect;
@@ -80,7 +73,6 @@ function adminUserLogin($ausername, $apassword) {
 	}
 	$connect->close();
 }
-
 // get admin details by id
 function getAdminUserDataByUserId($aid) {
 	global $connect;
@@ -90,9 +82,7 @@ function getAdminUserDataByUserId($aid) {
 	return $result;
 	
 	$connect->close();
-	//close the database connection
 }
-
 // check admin user login
 function checkAdminUserLogin() {
 	if (isset($_SESSION['aid'])) {
@@ -101,7 +91,6 @@ function checkAdminUserLogin() {
 		return false;
 	}
 }
-
 // check admin user not login
 function checkAdminUserNotLogin() {
 	if (isset($_SESSION['aid']) === FALSE) {
@@ -110,7 +99,6 @@ function checkAdminUserNotLogin() {
 		return false;
 	}
 }
-
 // admin user logout
 function checkAdminUserlogout() {
 	if (checkAdminUserLogin() === TRUE) {
@@ -121,7 +109,6 @@ function checkAdminUserlogout() {
 		header('location: login.php');
 	}
 }
-
 // check admin user password
 function checkpassword($aid) {
 	global $connect;
@@ -141,7 +128,6 @@ function checkpassword($aid) {
 	}
 	$connect->close();
 }
-
 // update admin details
 function updateadmin($aid) {
 	global $connect;
@@ -166,7 +152,6 @@ function updateadmin($aid) {
 	}
 	$connect->close();
 }
-
 // /Admin
 
 // ===================================================================================================================================
@@ -225,11 +210,9 @@ function registerMemberUser() {
 function msalt($length) {
 	return mcrypt_create_iv($length);
 }
-
 function makeMPassword($mpassword, $msalt) {
 	return hash('sha256', $mpassword.$msalt);
 }
-
 // member user file upload or member user profile picture
 function memberUserProfilePicture($musername) {
 	$mypic = $_FILES['mprofilepicture']['name'];
@@ -241,11 +224,11 @@ function memberUserProfilePicture($musername) {
 	$ext = end(explode('.', $_FILES["mprofilepicture"]["name"]));
 
 	if (in_array($ext, $allowed_ext)) {
-		$directory = "../ProfilePicture/$musername/images/";
+		$directory = "../profilepictures/$musername/images/";
 		mkdir($directory, 0777, true);
 		$filename = $musername.'.'.$ext;
-		$fileMoved = move_uploaded_file($file_temp, "../ProfilePicture/$musername/images/$filename");
-		// echo "<img src=\"ProfilePicture/$musername/images/$mfilename\" border=\"1\" width=\"100\" height=\"100\" /> <br/>";
+		$fileMoved = move_uploaded_file($file_temp, "../profilepictures/$musername/images/$filename");
+		// echo "<img src=\"profilepictures/$musername/images/$mfilename\" border=\"1\" width=\"100\" height=\"100\" /> <br/>";
 		if($fileMoved === TRUE) {
 			return true;
 		} else {
@@ -253,7 +236,6 @@ function memberUserProfilePicture($musername) {
 		}
 	}
 }
-
 // members userdata
 function muserdata($musername) {
 	global $connect;
@@ -266,9 +248,7 @@ function muserdata($musername) {
 		return false;
 	}
 	$connect->close();
-	//close the database connection
 }
-
 // member user login
 function memberUserLogin($musername, $mpassword) {
 	global $connect;
@@ -287,7 +267,6 @@ function memberUserLogin($musername, $mpassword) {
 	}
 	$connect->close();
 }
-
 // get member details by id
 function getMemberUserDataByUserId($mid) {
 	global $connect;
@@ -295,11 +274,8 @@ function getMemberUserDataByUserId($mid) {
 	$query = $connect->query($sql);
 	$result = $query->fetch_assoc();
 	return $result;
-	
 	$connect->close();
-	//close the database connection
 }
-
 // check member user login
 function checkMemberUserLogin() {
 	if (isset($_SESSION['mid'])) {
@@ -309,7 +285,6 @@ function checkMemberUserLogin() {
 	}
 
 }
-
 // check admin user logout
 function checkMemberUserLogout() {
 	if (checkMemberUserLogin() === TRUE) {
@@ -320,7 +295,6 @@ function checkMemberUserLogout() {
 		header('location: login.php');
 	}
 }
-
 // display members details in admin user
 function memberUserDetailsInAdminDashboard() {
 	global $connect;
@@ -351,7 +325,6 @@ function insToSbj() {
 	}
 	$connect->close();
 }
-
 $functionName = filter_input(INPUT_GET, 'functionName');
 
 if ($functionName == "javaReg") {
@@ -361,7 +334,6 @@ if ($functionName == "javaReg") {
 } else if ($functionName == "angReg") {
     angReg();
 }
-
 function check_reg() {
 	global $connect;
 	$sub_res = array();
@@ -373,7 +345,6 @@ function check_reg() {
     	return $sub_res;
     }  
 }
-
 function javaReg() {
 	global $connect;
     $mid = $_SESSION['mid'];
@@ -471,8 +442,6 @@ function subscribe_button_check() {
     }
     $connect->close();
 }
-
-
 // content
 function sub_content() {
 	global $connect;
@@ -484,10 +453,5 @@ function sub_content() {
 
 	$connect->close();
 }
-
-
-
-
-
 
 ?>

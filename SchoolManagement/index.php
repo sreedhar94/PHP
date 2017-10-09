@@ -8,15 +8,12 @@ include_once 'core/init.php';
 <html>
 <head>
 	<title>School Management | Home</title>
-	<!-- Bootstrap css -->
 	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
-	<!-- Datatables css -->
 	<link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css">
 	<link rel="stylesheet" type="text/css" href="custom/css/style.css">
 </head>
 <body>
 	<?php require_once 'navigation_bar.php'; ?>
-
 	<div class="container">
 		<h3>Available courses</h3>
 		<div class="col-sm-6 col-md-4">

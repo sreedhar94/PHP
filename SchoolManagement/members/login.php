@@ -117,12 +117,7 @@ $connect->close();
 	<script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
 	<!-- include custom index.js -->
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
-
-	<script type="text/javascript">
-		$('.dropdown').hover(function(){ 
-		  $('.dropdown-toggle', this).trigger('click'); 
-		});
-	</script>
+	<script type="text/javascript" src="members.js" ></script>
 
 </body>
 </html>

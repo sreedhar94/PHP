@@ -76,7 +76,7 @@ $connect->close();
 				<h2 class="btn-primary btn-lg btn-block">Member Full Details</h2>
 				<div class="col-md-3" align="center">
 					<?php
-					$dir = "../ProfilePicture/".$memberDetails['musername']."/images";
+					$dir = "../profilepictures/".$memberDetails['musername']."/images";
 					if (is_dir($dir)) {
 						$file = 0;
 						$handle = opendir($dir);
@@ -170,14 +170,6 @@ $connect->close();
 	<script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
-
-	<script type="text/javascript">
-		$('.dropdown').hover(function(){
-			$('.dropdown-toggle', this).trigger('click'); 
-		});
-		// $(document).ready(function() {
-		// 	$('#membersData').DataTable();
-		// } );
-	</script>
+	<script type="text/javascript" src="adminuser.js"></script>
 </body>
 </html>

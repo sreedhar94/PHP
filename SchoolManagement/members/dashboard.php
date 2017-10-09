@@ -68,8 +68,8 @@ $sub_res = check_reg();
 						echo $result['sub_description'];
 						 ?>
 					</p>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="javaReg()" id="java_reg">Register</button>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="javaReg()" id="java_unreg">Un-Register</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="javaReg()" id="java_reg">Subscribe</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="javaReg()" id="java_unreg">Un-Subscribe</button>
 				</div>
 			</div>
 		</div>
@@ -85,8 +85,8 @@ $sub_res = check_reg();
 						echo $result['sub_description'];
 						 ?>
 					</p>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()" id="php_reg">Register</button>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()" id="php_unreg">Un-Register</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()" id="php_reg">Subscribe</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="phpReg()" id="php_unreg">Un-Subscribe</button>
 				</div>
 			</div>
 		</div>
@@ -102,8 +102,8 @@ $sub_res = check_reg();
 						echo $result['sub_description'];
 						 ?>
 					</p>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()" id="ang_reg">Register</button>
-					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()" id="ang_unreg">Un-Register</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()" id="ang_reg">Subscribe</button>
+					<button class="btn btn-primary" data-target=".sub_reg" onclick="angReg()" id="ang_unreg">Un-Subscribe</button>
 				</div>
 			</div>
 		</div>
@@ -129,6 +129,7 @@ $sub_res = check_reg();
 	<script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
+	<script type="text/javascript" src="members.js" ></script>
 
 	<?php 
 

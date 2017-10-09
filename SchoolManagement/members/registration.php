@@ -47,7 +47,7 @@ $connect->close();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>School Management | Admin Registration</title>
+	<title>School Management | Members Registration</title>
 	<!-- Bootstrap css -->
 	<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
 	<!-- Datatables css -->
@@ -194,6 +194,7 @@ $connect->close();
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
 	<script type="text/javascript" src="../assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript" src="../assets/jquery/jquery.form.min.js"></script>
+	<script type="text/javascript" src="members.js" ></script>
 
 </body>
 </html>

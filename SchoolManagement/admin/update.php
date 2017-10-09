@@ -147,6 +147,7 @@ if ($_POST) {
 	<script type="text/javascript" src="../assets/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="../custom/js/index.js" ></script>
 	<script type="text/javascript" src="../assets/datatables/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="adminuser.js"></script>
 
 </body>
 </html>
