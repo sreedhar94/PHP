@@ -139,10 +139,16 @@ $connect->close();
 						<label for="mgender" class="col-md-4">Gender</label>
 						<div class="col-md-8">
 							<div class="btn-group" id="radiobtn" data-toggle="buttons">
-								<div class="btn btn-default">
+								<div class="btn btn-default <?php if($_SESSION) {
+									if ($muserdata['mgender'] == 'male')
+								echo 'active';
+							} ?>">
 									<input type="radio" class="btn btn-default" name="mgender" id="mgender" value="male">Male
 								</div>
-								<div class="btn btn-default">
+								<div class="btn btn-default <?php if($_SESSION) {
+									if ($muserdata['mgender'] == 'female')
+								echo 'active';
+							} ?>">
 									<input type="radio" class="btn btn-default" name="mgender" id="mgender" value="female">Female
 								</div>
 							</div>
@@ -164,24 +170,56 @@ $connect->close();
 							} ?>">
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="mparentname" class="col-md-4">Parent Name</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="mparentname" name="mparentname" placeholder="Parent Name" value="<?php if($_SESSION) {
+								echo $muserdata['mparentname'];
+							} ?>">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mparentcontact" class="col-md-4">Parent Contact</label>
+						<div class="col-md-8">
+							<input type="number" class="form-control" id="mparentcontact" name="mparentcontact" placeholder="Parent Contact" value="<?php if($_SESSION) {
+								echo $muserdata['mparentcontact'];
+							} ?>">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mstudentcontact" class="col-md-4">Student Contact</label>
+						<div class="col-md-8">
+							<input type="number" class="form-control" id="mstudentcontact" name="mstudentcontact" placeholder="Student Contact" value="<?php if($_SESSION) {
+								echo $muserdata['mstudentcontact'];
+							} ?>">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="maddress" class="col-md-4">Address</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="maddress" name="maddress" placeholder="Address" value="<?php if($_SESSION) {
+								echo $muserdata['maddress'];
+							} ?>">
+						</div>
+					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="acrpassword" class="col-md-4">Current Password</label>
+						<label for="mcrpassword" class="col-md-4">Current Password</label>
 						<div class="col-md-8">
-							<input type="password" class="form-control" id="acrpassword" name="acrpassword" placeholder="Current Password">
+							<input type="password" class="form-control" id="mcrpassword" name="mcrpassword" placeholder="Current Password">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="anpassword" class="col-md-4">New Password</label>
+						<label for="mnpassword" class="col-md-4">New Password</label>
 						<div class="col-md-8">
-							<input type="password" class="form-control" id="anpassword" name="anpassword" placeholder="New Password">
+							<input type="password" class="form-control" id="mnpassword" name="mnpassword" placeholder="New Password">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="acpassword" class="col-md-4">Confirm Password</label>
+						<label for="mcpassword" class="col-md-4">Confirm Password</label>
 						<div class="col-md-8">
-							<input type="password" class="form-control" id="acpassword" name="acpassword" placeholder="Confirm Password">
+							<input type="password" class="form-control" id="mcpassword" name="mcpassword" placeholder="Confirm Password">
 						</div>
 					</div>
 				</div>
@@ -196,58 +234,10 @@ $connect->close();
 
 		<div class="row">
 			<form class="form-horizontal col-md-12" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'] ?>" id="createStudentDetails">
-				<h2>Sudents Registration Form</h2>
-				<div class="messages">
-					<?php if (!empty($messages)) {?>					
-					<?php foreach ($messages as $key => $value) {
-						echo $value;
-					} ?>					
-					<?php } ?>
-				</div>
+				
+				
 				<div class="col-md-6">
-					<div class="form-group">
-						<label for="mfirstname" class="col-md-4">Firstname</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="mfirstname" name="mfirstname" placeholder="Firstname">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="mlastname" class="col-md-4">Lastname</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="mlastname" name="mlastname" placeholder="Lastname">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="mdob" class="col-md-4">Date of Birth</label>
-						<div class="col-md-8">
-							<div class="input-group date" data-date-format="yyyy-mm-dd" data-provide="datepicker">
-							    <input type="text" class="form-control" placeholder="Date of birth">
-							    <div class="input-group-addon">
-							        <span class="glyphicon glyphicon-calendar"></span>
-							    </div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="mgender" class="col-md-4">Gender</label>
-						<div class="col-md-8">
-							<div class="btn-group" id="radiobtn" data-toggle="buttons">
-								<div class="btn btn-default">
-									<input type="radio" class="btn btn-default" name="mgender" id="mgender" value="male">Male
-								</div>
-								<div class="btn btn-default">
-									<input type="radio" class="btn btn-default" name="mgender" id="mgender" value="female">Female
-								</div>
-							</div>
-						</div>
-					</div>
 					
-					<div class="form-group">
-						<label for="musername" class="col-md-4">Username</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="musername" name="musername" placeholder="Username">
-						</div>
-					</div>
 					<div class="form-group">
 						<label for="mpassword" class="col-md-4">Password</label>
 						<div class="col-md-8">
@@ -259,33 +249,11 @@ $connect->close();
 						<div class="col-md-8">
 							<input type="password" class="form-control" id="mcpassword" name="mcpassword" placeholder="Confirm Password">
 						</div>
-					</div>				
-					<div class="form-group">
-						<label for="mparentname" class="col-md-4">Parent Name</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="mparentname" name="mparentname" placeholder="Parent Name">
-						</div>
-					</div>
+					</div>	
 				</div>
 				<div class="col-md-6">
-					<div class="form-group">
-						<label for="mparentcontact" class="col-md-4">Parent Contact</label>
-						<div class="col-md-8">
-							<input type="number" class="form-control" id="mparentcontact" name="mparentcontact" placeholder="Parent Contact">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="mstudentcontact" class="col-md-4">Student Contact</label>
-						<div class="col-md-8">
-							<input type="number" class="form-control" id="mstudentcontact" name="mstudentcontact" placeholder="Student Contact">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="maddress" class="col-md-4">Address</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="maddress" name="maddress" placeholder="Address">
-						</div>
-					</div>
+					
+					
 					<div class="form-group">
 						<label for="mprofilepicture" class="col-md-4">Profile Picture</label>
 						<div class="col-md-8">
